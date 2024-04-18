@@ -41,6 +41,11 @@ const tourSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  users: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "User",
+    default: [],
+  },
 });
 
 export const Tour = mongoose.model("Tour", tourSchema);
