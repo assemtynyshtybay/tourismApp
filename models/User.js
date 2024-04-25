@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { boolean } from "webidl-conversions";
 
 const infoSchema = new mongoose.Schema({
   fullName: {
@@ -28,6 +27,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Пароль обязателен!"],
   },
+  // role: {
+  //   type: Enumerator,
+  //   enum: ["admin","user"],
+  // },
   isAdmin: {
     type: Boolean,
     default: false,
