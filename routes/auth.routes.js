@@ -8,6 +8,6 @@ import {
 const router = Router();
 
 router.post("/register", registerValidator, register);
-router.post("/login", loginValidator, login);
+router.post("/login", login);
 
 export default router;

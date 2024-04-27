@@ -44,7 +44,6 @@ export async function login(req, res) {
     if (!passwordIsValid) {
       res.status(404).json({ message: "Неверный логин или пароль!" });
     }
-    console.log("ll");
 
     const token = jwt.sign(
       { userId: user._id, isAdmin: user.isAdmin },

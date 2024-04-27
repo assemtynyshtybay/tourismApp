@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: [true, "Логин обязателен!"],
-    unique: true,
+    unique: false,
   },
   email: {
     type: String,

@@ -4,8 +4,11 @@ import swaggerUi from "swagger-ui-express";
 import userSchema from "./docs/schemas/user.js";
 // import cardSchema from "./docs/schemas/card.js";
 import tourSchema from "./docs/schemas/tour.js";
+import cardSchema from "./docs/schemas/card.js";
+
 // Swagger Paths
 import authPaths from "./docs/paths/auth.js";
+import userPaths from "./docs/paths/user.js";
 import tourPaths from "./docs/paths/tour.js";
 
 const swaggerOptions = {
@@ -20,8 +23,9 @@ const swaggerOptions = {
       schemas: {
         User: userSchema,
         Tour: tourSchema,
+        Card: cardSchema,
       },
-      securitySchemas: {
+      securitySchemes: {
         BearerAuth: {
           type: "http",
           scheme: "bearer",
@@ -31,6 +35,7 @@ const swaggerOptions = {
     },
     paths: {
       ...authPaths,
+      ...userPaths,
       ...tourPaths,
     },
   },

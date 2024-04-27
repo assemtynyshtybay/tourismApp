@@ -26,6 +26,10 @@ const authPaths = {
                 password: {
                   type: "string",
                 },
+                isAdmin: {
+                  type: "boolean",
+                  default: false,
+                },
               },
             },
           },

@@ -4,7 +4,7 @@ import { Tour } from "../models/Tour.js";
 export async function getTourById(req, res) {
   try {
     const { id } = req.params;
-    const result = await Tour.findOne(id);
+    const result = await Tour.findById(id);
     res.status(201).json(result);
   } catch (error) {
     res.status(500).json(error);
@@ -13,7 +13,7 @@ export async function getTourById(req, res) {
 export async function deleteTourById(req, res) {
   try {
     const { id } = req.params;
-    const result = await Tour.findOneAndDelete(id);
+    const result = await Tour.findByIdAndDelete(id);
     res.status(201).json(result);
   } catch (error) {
     res.status(500).json(error);
@@ -22,7 +22,7 @@ export async function deleteTourById(req, res) {
 export async function updateTourById(req, res) {
   try {
     const { id } = req.params;
-    const result = await Tour.findOneAndUpdate(
+    const result = await Tour.findByIdAndUpdate(
       id,
       { ...req.body },
       { new: true }

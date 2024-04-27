@@ -1,9 +1,10 @@
 import { User } from "../models/User.js";
+import { hashPassword } from "../services/bcrypt.js";
 
 export async function getUserInfo(req, res) {
   try {
-    const { email } = req.body;
-    const result = await User.findOne({ email });
+    const { id } = req.params;
+    const result = await User.findById(id);
     res.status(201).json(result);
   } catch (error) {
     res.status(500).json(error);
@@ -13,10 +14,16 @@ export async function getUserInfo(req, res) {
 export async function updateUser(req, res) {
   try {
     const { id } = req.params;
-    const { fullName, username, email, pasportNumber } = req.body;
-    const updatedUser = await User.findOneAndUpdate(
+    const { fullName, username, email, pasportNumber, password } = req.body;
+    const hashedPassword = await hashPassword(password);
+    const updatedUser = await User.findByIdAndUpdate(
       id,
-      { email, username, information: { fullName, pasportNumber } },
+      {
+        email,
+        username,
+        information: { fullName, pasportNumber },
+        password: hashedPassword,
+      },
       { new: true }
     );
 
@@ -24,7 +31,12 @@ export async function updateUser(req, res) {
       return res.status(404).json({ error: "Пользователь не найден" });
     }
 
-    res.json(updatedUser);
+    res.json({
+      updatedUser: {
+        ...updatedUser,
+        password: hashPassword(updateUser.password),
+      },
+    });
   } catch (error) {
     res.status(500).json({ error: error.toString() });
   }
