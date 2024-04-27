@@ -10,6 +10,7 @@ import cardSchema from "./docs/schemas/card.js";
 import authPaths from "./docs/paths/auth.js";
 import userPaths from "./docs/paths/user.js";
 import tourPaths from "./docs/paths/tour.js";
+import cardPaths from "./docs/paths/card.js";
 
 const swaggerOptions = {
   definition: {
@@ -37,6 +38,7 @@ const swaggerOptions = {
       ...authPaths,
       ...userPaths,
       ...tourPaths,
+      ...cardPaths,
     },
   },
   apis: [],

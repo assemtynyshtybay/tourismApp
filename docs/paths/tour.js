@@ -153,5 +153,31 @@ const tourPaths = {
       },
     },
   },
+  "/tours/delete/{id}": {
+    delete: {
+      summary: "Delete tour",
+      security: [
+        {
+          BearerAuth: [],
+        },
+      ],
+      tags: ["Tour"],
+      responses: {
+        201: {
+          description: "This route return data of deleted tour",
+        },
+      },
+      parameters: [
+        {
+          name: "id",
+          in: "path",
+          required: true,
+          schema: {
+            type: "string",
+          },
+        },
+      ],
+    },
+  },
 };
 export default tourPaths;
