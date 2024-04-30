@@ -50,8 +50,10 @@ export async function login(req, res) {
       SECRET_KEY,
       { expiresIn: "12h" }
     );
-
-    res.status(201).json({ token: token });
+    if(token)
+      res.status(201).json({ token: token, userId: user._id, isAdmin: user.isAdmin });
+    else
+      res.status(401).json({ data: "Аутентикация не удалась!"});
   } catch (error) {
     res.status(500).json(error);
   }
